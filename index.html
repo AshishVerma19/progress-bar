@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>progress bar</title>
+    <style>
+        .main-container{
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .bar-container {
+            width: 500px;
+            height: 30px;
+            background-color: blanchedalmond;
+        }
+
+        .bar {
+            height: 100%;
+            width: 0px;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="bar-container">
+            <div id="bar1" class="bar"></div>
+        </div>
+        <div class="bar-container">
+            <div id="bar2" class="bar"></div>
+        </div>
+    </div>
+    <br>
+    <input type="button" onclick="runBar(2)" value="Run Progress Bar">
+    <script>
+        function runBar(sec) {
+            const bar1 = document.getElementById('bar1');
+            const bar2 = document.getElementById('bar2');
+
+            bar1.style.transition = `${sec}s linear width`;
+            bar1.style.width = '100%';
+
+            let progress = 0;
+            const intervel = setInterval(() => {
+                bar2.style.width = `${progress}%`;
+                progress++;
+                if(progress === 101) {
+                    clearInterval(intervel);
+                }
+            }, (sec * 1000)/100);
+        }
+    </script>
+</body>
+</html>
